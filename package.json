@@ -1,6 +1,6 @@
 {
     "name": "imageprocessing_api",
-    "version": "1.0.0",
+    "version": "8.11.0",
     "description": "",
     "main": "dist/index.js",
     "scripts": {
@@ -37,7 +37,7 @@
         "jasmine": "^4.2.1",
         "jasmine-spec-reporter": "^7.0.0",
         "nodemon": "^2.0.16",
-        "prettier": "^1.19.1",
+        "prettier": "^2.3.0",
         "ts-node": "^10.8.1",
         "typescript": "^4.7.4"
     },
