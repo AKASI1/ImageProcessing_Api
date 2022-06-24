@@ -3,7 +3,6 @@ import fs from "fs/promises";
 import path from "path";
 import { app } from "../../index";
 import { Stats } from "fs";
-import sharp from "sharp";
 
 describe("GET /api/images", () => {
   it("responds with 400 if called without parameters", (done): void => {

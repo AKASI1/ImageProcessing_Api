@@ -1,44 +1,51 @@
 {
-  "name": "imageprocessing_api",
-  "version": "1.0.0",
-  "description": "",
-  "main": "dist/index.js",
-  "scripts": {
-    "build": "rm -rf dist && tsc",
-    "start": "nodemon --watch './**/*.ts' --exec 'ts-node' ./src/index.ts",
-    "start:prod": "npm run build && node dist/index.js",
-    "jasmine": "jasmine",
-    "test": "npm run build && npm run jasmine"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AKASI1/ImageProcessing_Api.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/AKASI1/ImageProcessing_Api/issues"
-  },
-  "homepage": "https://github.com/AKASI1/ImageProcessing_Api#readme",
-  "devDependencies": {
-    "@types/express": "^4.17.13",
-    "@types/jasmine": "^4.0.3",
-    "@types/morgan": "^1.9.3",
-    "@types/node": "^18.0.0",
-    "jasmine": "^4.2.1",
-    "nodemon": "^2.0.16",
-    "ts-node": "^10.8.1",
-    "typescript": "^4.7.4"
-  },
-  "dependencies": {
-    "@types/sharp": "^0.30.4",
-    "@types/supertest": "^2.0.12",
-    "dotenv": "^16.0.1",
-    "express": "^4.18.1",
-    "jasmine-spec-reporter": "^7.0.0",
-    "morgan": "^1.10.0",
-    "sharp": "^0.30.7",
-    "supertest": "^6.2.3"
-  }
+    "name": "imageprocessing_api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "rm -rf dist && tsc",
+        "start": "nodemon --watch './**/*.ts' --exec 'ts-node' ./src/index.ts",
+        "start:prod": "npm run build && node dist/index.js",
+        "jasmine": "jasmine",
+        "test": "npm run build && npm run jasmine",
+        "lint": "eslint '*/**/*.{js,ts}' --fix",
+        "prettier": "prettier --config .prettierrc.js '*.js' --write"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/AKASI1/ImageProcessing_Api.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/AKASI1/ImageProcessing_Api/issues"
+    },
+    "homepage": "https://github.com/AKASI1/ImageProcessing_Api#readme",
+    "devDependencies": {
+        "@types/express": "^4.17.13",
+        "@types/jasmine": "^4.0.3",
+        "@types/morgan": "^1.9.3",
+        "@types/node": "^18.0.0",
+        "@types/sharp": "^0.30.4",
+        "@types/supertest": "^2.0.12",
+        "@typescript-eslint/eslint-plugin": "^5.29.0",
+        "eslint": "^8.18.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "jasmine": "^4.2.1",
+        "jasmine-spec-reporter": "^7.0.0",
+        "nodemon": "^2.0.16",
+        "prettier": "^1.19.1",
+        "ts-node": "^10.8.1",
+        "typescript": "^4.7.4"
+    },
+    "dependencies": {
+        "dotenv": "^16.0.1",
+        "express": "^4.18.1",
+        "morgan": "^1.10.0",
+        "sharp": "^0.30.7",
+        "supertest": "^6.2.3"
+    }
 }

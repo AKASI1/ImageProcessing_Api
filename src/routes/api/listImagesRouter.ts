@@ -1,27 +1,30 @@
-import express, { Request, Response } from "express";
-import fs from "fs/promises";
-import path from "path";
+import express, { Request, Response } from 'express';
+import fs from 'fs/promises';
+import path from 'path';
 
 export const listImages = express.Router();
 
-listImages.get("/", async (req: Request, res: Response) => {
-  const imagesFolder = `${path.resolve(__dirname, "../../../Images/full")}`;
-  const files: String[] | null = await fs.readdir(imagesFolder).catch(() => {
-    res.status(500).send("Error occured reading the images");
-    return null;
-  });
+listImages.get(
+    '/',
+    async (req: Request, res: Response): Promise<void> => {
+        const imagesFolder = `${path.resolve(__dirname, '../../../Images/full')}`;
+        const files: string[] | null = await fs.readdir(imagesFolder).catch(() => {
+            res.status(500).send('Error occured reading the images');
+            return null;
+        });
 
-  if (!files) {
-    return;
-  }
+        if (!files) {
+            return;
+        }
 
-  const htmlResponse = `
+        const htmlResponse = `
     <h1>Available images</h1>
     <p>Below you can find all images that are accessible via the route /api/images</p>
     <ul>
-      ${files.map((file: String) => `<li>${file}</li>`)}
+      ${files.map((file: string) => `<li>${file}</li>`)}
     </ul>
 `;
 
-  res.status(200).send(htmlResponse);
-});
+        res.status(200).send(htmlResponse);
+    },
+);
