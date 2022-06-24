@@ -9,12 +9,12 @@ It is an express server which is able to take images located in a folder and cre
 ### List available images which can be accessed through the endpoint
 
 ```http
-  GET /api/listImages
+  GET /api/listimages
 ```
 #### Create thumb version of image
 
 ```http
-  GET /api/images/?filename={filename}&height={height}&width={width}
+  GET /api/image/?filename={filename}&height={height}&width={width}
 ```
 
 | Parameter  | Type     | Description    |
