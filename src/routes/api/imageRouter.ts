@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import fs from 'fs';
 import { Stats } from 'fs';
 import path from 'path';
-import sharp from 'sharp';
+import ImageResizing from '../../functions/ImageResizing';
 
 export const resizeImage = express.Router();
 
@@ -15,7 +15,7 @@ resizeImage.get(
             fs.mkdirSync(cashesPath);
         }
 
-        const filename = req.query['filename'];
+        const filename = req.query['filename'] as string;
 
         const height = req.query['height'] ? parseInt(req.query['height'] as string) : null;
         const width = req.query['width'] ? parseInt(req.query['width'] as string) : null;
@@ -49,25 +49,13 @@ resizeImage.get(
                     .send(data);
             });
         } else {
-            const data: Buffer | null = await fs.promises.readFile(fullImagePath).catch(() => null);
-
-            if (!data) {
-                return;
-            }
-            const resizedImage = await sharp(data)
-                .resize(width, height)
-                .toBuffer()
-                .catch(() => null);
-            if (!resizedImage) {
-                res.status(500).send("Can't resize the image, please try again :)");
-                return;
-            }
-            fs.promises
-                .writeFile(
-                    `${path.resolve(__dirname, `../../../Images/cashes/${filename}${width}_${height}.jpeg`)}`,
-                    resizedImage,
-                )
-                .then(() => {
+            ImageResizing.resizeImage({
+                fullImagePath,
+                filename,
+                height,
+                width,
+            })
+                .then((resizedImage: Buffer) => {
                     res.status(200)
                         .contentType('jpeg')
                         .send(resizedImage);
@@ -78,3 +66,27 @@ resizeImage.get(
         }
     },
 );
+
+// const data: Buffer | null = await fs.promises.readFile(fullImagePath).catch(() => null);
+
+// if (!data) {
+//     return;
+// }
+// const resizedImage = await sharp(data)
+//     .resize(width, height)
+//     .toBuffer()
+//     .catch(() => null);
+// if (!resizedImage) {
+//     res.status(500).send("Can't resize the image, please try again :)");
+//     return;
+// }
+// fs.promises
+//     .writeFile(`${path.resolve(__dirname, `../../../Images/cashes/${filename}${width}_${height}.jpeg`)}`, resizedImage)
+//     .then(() => {
+//         res.status(200)
+//             .contentType('jpeg')
+//             .send(resizedImage);
+//     })
+//     .catch(() => {
+//         res.status(500).send("Can't Process the image :(");
+//     });
